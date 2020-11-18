@@ -1,0 +1,34 @@
+<%= form_with(model: table, local: true) do |form| %>
+  <% if table.errors.any? %>
+    <div id="error_explanation">
+      <ul>
+        <% table.errors.full_messages.each do |message| %>
+          <div class="notification is-danger">
+            <button class="delete"></button>
+            <li><%= message %></li>
+          </div>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="box">
+      <div class="field">
+        <label class="label">Número da Mesa</label>
+        <div class="control">
+            <%= form.number_field :table_number ,class: 'input'%>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Bar a que pertece</label>
+        <div class="control">
+          <%= form.collection_select :company_id, Company.all, :id, :name, {}, {class: "input"}%>
+        </div>
+      </div>
+      
+      <div class= "control">
+        <%= form.submit 'Enviar', class: 'button is-primary'%>
+      </div>
+
+  </div>
+<% end %>

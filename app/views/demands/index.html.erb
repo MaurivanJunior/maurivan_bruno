@@ -1,0 +1,39 @@
+<div class="box">
+<div class="columns">
+<div class="column is-half is-offset-one-quarter notification is-primary">
+  <% @table_ids.each do |table_id| %>
+    <% table = Table.find(table_id) %>
+    <div class="card">
+      <header class="card-header">
+        <p class="card-header-title">
+          Mesa <%= table.table_number %> do Bar <%= table.company.name %>
+        </p>
+      </header>
+      <div class="card-content">
+        <div class="content">
+          <% table.demands.each do |d| %>
+            <span class="tag is-info"><%= Product.find(d.product_id).name %></span> - <span class="tag is-warning is-light"><%= d.product_quantity %></span> - <%=l d.created_at %>
+            <br>
+            <br>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  </div>
+  </div>
+</div>
+<div class="columns">
+	<div class="field is-grouped is-grouped-right column is-4 is-offset-8">
+	  <p class="control">
+		  <%= link_to 'Voltar', companies_path ,class: "button is-info is-inverted"%>
+	  </p>
+	</div>
+</div>
+
+<script>
+// recarrega a página a cada 5 secgundos
+  setTimeout(function(){
+    window.location.reload(1);
+  }, 5000);
+</script>

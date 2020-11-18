@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+<article class="message is-dark">
+  <div class="message-header">
+    <p>Lista de Bares cadastrados</p>
+  </div>
+</article>
+
+   <div class="table-container">  
+    <table class="table is-striped is-flex-tablet-only is-fullwidth">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Descrição</th>
+          <th colspan="3">#</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @companies.each do |company| %>
+          <tr>
+            <td><%= company.name %></td>
+            <td><%= company.description%></td>
+            <td>
+              <%= render 'shared/action_links', object: company %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="box">
+    <div class="columns is-gapless is-multiline is-mobile">
+      <%= paginate @companies %>
+    </div>
+ </div>
+<%= link_to 'Novo Bar', new_company_path,class: "button is-link" %>
+</div>
+

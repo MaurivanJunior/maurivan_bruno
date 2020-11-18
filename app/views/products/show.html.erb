@@ -1,0 +1,48 @@
+<p id="notice"><%= notice %></p>
+<div class="box notification is-primary">
+  <div class="tile is-ancestor">
+    <div class="tile is-parent">
+      <article class="tile is-child box">
+        <p class="title">Nome</p>
+        <p class="subtitle"><%= @product.name %></p>
+      </article>
+    </div>
+    <div class="tile is-parent">
+      <article class="tile is-child box">
+        <p class="title">Quantidade</p>
+        <p class="subtitle"><%= @product.quantity %></p>
+      </article>
+    </div>
+    <div class="tile is-parent">
+      <article class="tile is-child box">
+        <p class="title">Bar</p>
+        <div class="content">
+          <p><%= @product.company.name %></p>
+        </div>
+      </article>
+    </div>
+  </div>
+
+  <div class="tile is-ancestor">
+    <div class="tile is-vertical is-8">
+      <div class="tile">
+        <div class="tile is-parent is-vertical">
+          <article class="tile is-child box">
+            <p class="title">Descrição</p>
+            <p class="subtitle"><%= @product.description %></p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="columns">
+	<div class="field is-grouped is-grouped-right column is-4 is-offset-8">
+	  <p class="control">
+		<%= link_to 'Editar',edit_product_path(@product),class: "button is-primary" %>
+	  </p>
+	  <p class="control">
+		<%= link_to 'Voltar', products_path ,class: "button is-info is-inverted"%>
+	  </p>
+	</div>
+</div>

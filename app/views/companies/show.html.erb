@@ -1,0 +1,76 @@
+<p id="notice"><%= notice %></p>
+
+<div class="tile is-ancestor">
+  <div class="tile is-4 is-vertical is-parent">
+    <div class="tile is-child box notification is-primary">
+      <p class="title">Nome</p>
+      <p><%= @company.name %></p>
+    </div>
+    <div class="tile is-child box notification is-primary">
+      <p class="title">Descrição</p>
+      <p><%= @company.description %></p>
+    </div>
+  </div>
+  <div class="tile is-parent">
+    <div class="tile is-child box notification is-primary">
+      <p class="title">Produtos</p>
+      <%@company.products.each do |p|  %>
+        <div class="card">
+          <header class="card-header">
+            <p class="card-header-title">
+              <span class="tag is-info"><%= p.name  %></span> - <%= p.quantity%>
+            </p>
+            <span class="icon">
+              <i class="fa fa-calendar" aria-hidden="true"></i>
+            </span>
+          </header>
+        </div>
+      <% end %>
+      <p class="title">Mesas</p>
+      Mesas Disponivéis: 
+      <% @company.tables.map(&:table_number).each do |n|%>
+        <span class="tag is-info"><%= n %></span>
+      <% end %>
+    </div>
+  </div>
+  <div class="tile is-parent">
+    <article class="tile is-child notification is-primary">
+      <p class="title">Pedidos</p>
+      <p class="subtitle">Pedidos enviados pelos clientes</p>
+      <div class="content">
+        <%@table_ids.each do |table_id|  %>
+          <% table = Table.find(table_id)  %>
+          <div class="card">
+            <header class="card-header">
+              <p class="card-header-title">
+                Mesa: <%= table.table_number%>
+              </p>
+              <span class="icon">
+                <i class="fa fa-calendar" aria-hidden="true"></i>
+              </span>
+            </header>
+            <div class="card-content">
+              <div class="content">
+                <% table.demands.each do |d| %>
+                  <span class="tag is-info"><%= Product.find(d.product_id).name %></span> - <%= d.product_quantity %> 
+                  <br>
+                  <br>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </article>
+  </div>
+</div>
+<div class="columns">
+	<div class="field is-grouped is-grouped-right column is-4 is-offset-8">
+	  <p class="control">
+		<%= link_to 'Editar',edit_company_path(@company),class: "button is-primary" %>
+	  </p>
+	  <p class="control">
+		<%= link_to 'Voltar', companies_path ,class: "button is-info is-inverted"%>
+	  </p>
+	</div>
+</div>

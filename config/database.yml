@@ -1,0 +1,22 @@
+
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  host: localhost
+  username: postgres
+  password: root
+
+development:
+  <<: *default
+  database: bartender_online_development
+
+test:
+  <<: *default
+  database: bartender_online_test
+
+production:
+  <<: *default
+  database: bartender_online__production
+  username: bartender_online_
+  password: <%= ENV['BARTENDERONLINE_DATABASE_PASSWORD'] %>

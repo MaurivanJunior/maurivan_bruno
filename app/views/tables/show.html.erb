@@ -1,0 +1,32 @@
+
+<p id="notice"><%= notice %></p>
+<div class="box notification is-primary">
+  <div class="tile is-ancestor">
+    <div class="tile is-4 is-vertical is-parent">
+      <div class="tile is-child box">
+        <p class="title">Número</p>
+        <p><%= @table.table_number %></p>
+      </div>
+      <div class="tile is-child box">
+        <p class="title">Bar</p>
+        <p><%= @table.company.name %></p>
+      </div>
+    </div>
+    <div class="tile is-parent">
+      <div class="tile is-child box">
+        <%= @svg.html_safe %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="columns">
+	<div class="field is-grouped is-grouped-right column is-4 is-offset-8">
+	  <p class="control">
+		<%= link_to 'Editar',edit_table_path(@table),class: "button is-primary" %>
+	  </p>
+	  <p class="control">
+		<%= link_to 'Voltar', tables_path ,class: "button is-info is-inverted"%>
+	  </p>
+	</div>
+</div>
