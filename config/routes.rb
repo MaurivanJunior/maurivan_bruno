@@ -4,9 +4,9 @@ Rails.application.routes.draw do
   resources :products
   resources :tables
   resources :companies
-  resources :demands
+  resources :demands, only: %i[index]
   root to: 'companies#index'
-
+  delete 'demands/delete_all', to: 'demands#delete_all'
   namespace :api do
     namespace :v1 do
       get 'company/:id/table/:table_id/all_products', to: 'products#all_products'

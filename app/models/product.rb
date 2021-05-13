@@ -2,7 +2,7 @@
 
 class Product < ApplicationRecord
   belongs_to :company
-  has_many :demands
+  has_many :demands, dependent: :destroy
   has_many :tables, through: :demands
 
   validates :name, presence: true
